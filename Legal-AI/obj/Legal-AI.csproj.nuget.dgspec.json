@@ -44,7 +44,15 @@
               "target": "Package",
               "version": "[2.3.55.2, )"
             },
+            "Microsoft.AspNet.Cors": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            },
             "Microsoft.AspNet.WebApi.Core": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            },
+            "Microsoft.AspNet.WebApi.Cors": {
               "target": "Package",
               "version": "[5.2.9, )"
             },

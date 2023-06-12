@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net;
 using Microsoft.Data.SqlClient;
+using System.Net;
 
 namespace Legal_AI.Controllers
 {
@@ -9,9 +9,8 @@ namespace Legal_AI.Controllers
     public class AppController : ControllerBase
     {
         [HttpPost]
-        [Route("api/account/login")]
-            public IActionResult Login(User user)
-
+        [Route("account/login")]
+        public IActionResult Login(User user)
         {
             // Perform login logic
             // Example code to validate the user credentials
@@ -40,18 +39,17 @@ namespace Legal_AI.Controllers
     public class ApiController
     {
         [HttpPost]
-        [Route("api/account/register")]
+        [Route("account/register")]
         public IActionResult Register(User user)
         {
-            
             using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-40JAMN6\\PROMACT;Initial Catalog=Legal_AI_DB;Integrated Security=True;TrustServerCertificate=True"))
             {
                 connection.Open();
-                string query = "INSERT INTO Users (Email,Password,Designation) VALUES (@Email,@Password,@Designation )";
+                string query = "INSERT INTO Users (Email, Password, Designation) VALUES (@Email, @Password, @Designation)";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Email", user.Email);
                 command.Parameters.AddWithValue("@Password", user.Password);
-                command.Parameters.AddWithValue("@Designation", user.Desgination);
+                command.Parameters.AddWithValue("@Designation", user.Designation);
                 command.ExecuteNonQuery();
             }
 
@@ -60,15 +58,17 @@ namespace Legal_AI.Controllers
 
         private IActionResult Ok()
         {
-            throw new NotImplementedException();
+            
+            return Ok(); // Return an empty 200 OK response
         }
+
     }
 
     public class User
     {
-        public object Email { get; internal set; }
+        public string Email { get; set; }
         public string Password { get; set; }
-        public object Desgination { get; internal set; }
+        public string Designation { get; set; }
     }
-    }
-
+}
+ 

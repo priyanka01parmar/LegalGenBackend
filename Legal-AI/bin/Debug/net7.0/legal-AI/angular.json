@@ -58,6 +58,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {  
+          "browserTarget": "legal-AI:build",  
+           "proxyConfig": "proxy.conf.json"  
+          },
           "configurations": {
             "production": {
               "browserTarget": "legal-AI:build:production"
